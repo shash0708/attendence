@@ -1,0 +1,53 @@
+// Use variables to style your logo
+.home-prop{
+  width: 1000px;
+  height: 400px;  // Add other styling properties as needed
+  position: fixed;
+  top: 50%; // Adjust as needed
+  right: -100px; // Adjust as needed
+  transform: translateY(-50%); 
+}
+
+.text-container{
+
+  font-size: xx-large;
+  font-weight: bolder;
+  position: fixed;
+  top: 40%; // Adjust as needed
+  left: 200px; // Adjust as needed
+  transform: translateY(-50%);
+
+}
+
+
+.revolutionze{
+  font-size: medium;
+  position: fixed;
+  top: 45%; // Adjust as needed
+  left: 350px; // Adjust as needed
+  transform: translateY(-50%);
+}
+
+.button-prop{
+  font-size: medium;
+  position: fixed;
+  top: 55%; // Adjust as needed
+  left: 380px; // Adjust as needed
+  transform: translateY(-50%);
+}
+
+// Button.styles.scss
+
+.button {
+  background-color: blue; // Set background color to blue
+  color: white; // Set text color to white
+  padding: 10px 20px; // Add padding to the button
+  border: none; // Remove border
+  border-radius: 5px; // Add border radius for rounded corners
+  cursor: pointer; // Change cursor to pointer on hover
+  transition: background-color 0.3s ease; // Add transition effect for smoother color change
+  
+  &:hover {
+    background-color: darkblue; // Change background color on hover
+  }
+}

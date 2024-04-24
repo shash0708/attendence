@@ -1,0 +1,10 @@
+// Define variables
+$logo-width: 100px;
+$logo-height: 50px;
+
+// Use variables to style your logo
+.logo {
+  width: $logo-width;
+  height: $logo-height;
+  // Add other styling properties as needed
+}

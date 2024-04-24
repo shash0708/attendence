@@ -1,0 +1,10 @@
+// Define variables
+$logo-width: 100px;
+$logo-height: 50px;
+
+// Use variables to style your logo
+.home-prop{
+  width: 100px;
+  height: $logo;
+  // Add other styling properties as needed
+}
