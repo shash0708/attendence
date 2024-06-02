@@ -93,7 +93,7 @@ app.post('/update', async (req, res) => {
             return res.status(404).json({ error: 'Event not found' });
         }
 
-        const baseUrl = 'http://localhost:3000/';
+        const baseUrl = 'https://attendence-49cr.vercel.app/';
         const eventNameSlug = encodeURIComponent(event.eventName.replace(/\s+/g, '-').toLowerCase());
         const fullUrl = `${baseUrl}${eventNameSlug}/student-form`;
 
