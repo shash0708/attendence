@@ -4,6 +4,7 @@ import Nav from '../Navbar/Navbar.component';
 import { Fragment } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@chakra-ui/react';
+import axios from 'axios'; // Import Axios
 
 export default function Form() {
   const [eventName, setEventName] = useState('');
@@ -28,28 +29,25 @@ export default function Form() {
         setAdminLocation({ latitude, longitude });
 
         try {
-          const response = await fetch('https://attendence-omega.vercel.app/update', {
-            method: 'POST',
+          // Axios POST request for form submission
+          axios.defaults.withCredentials= true;
+          const response = await axios.post('https://attendence-omega.vercel.app/update', {
+            eventName,
+            contactNo,
+            strength,
+            year,
+            organization,
+            department,
+            maxRadius,
+            adminLocation: { latitude, longitude }
+          }, {
             headers: {
               'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-              eventName,
-              contactNo,
-              strength,
-              year,
-              organization,
-              department,
-              maxRadius,
-              adminLocation: { latitude, longitude }
-            }),
-              credentials: 'include' // or 'same-origin' depending on your setup
-
-          });
+            },          });
 
           console.log(response);
 
-          if (response.ok) {
+          if (response.status === 200) {
             // Handle successful submission
             toast({
               title: 'Form Submitted Successfully',
@@ -59,39 +57,8 @@ export default function Form() {
               isClosable: true,
             });
 
-            const linkResponse = await fetch('https://attendence-omega.vercel.app/generate-link/', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({
-                eventName: eventName// Send event name to the server
-              }),
-            });
-
-            if (linkResponse.ok) {
-              // Handle successful link generation
-              const linkData = await linkResponse.json();
-              console.log('Generated Link:', linkData.link);
-              if (navigator.clipboard) {
-                navigator.clipboard.writeText(linkData.link)
-                  .then(() => {
-                    toast({
-                      title: 'Link Copied',
-                      description: "The generated link has been copied to your clipboard.",
-                      status: 'info',
-                      duration: 5000,
-                      isClosable: true,
-                    });
-                  });
-              }
-              // Redirect to the link page
-              navigate(`/${eventName}`);
-            } else {
-              // Handle errors in link generation
-              console.error('Failed to generate link');
-            }
-
+            // Call function to generate link
+            generateLink(eventName);
           } else {
             // Handle errors
             console.error('Failed to submit data');
@@ -102,6 +69,49 @@ export default function Form() {
       }, showError);
     } else {
       alert("Geolocation is not supported by this browser.");
+    }
+  };
+
+  const generateLink = async (eventName) => {
+    try {
+      // Axios POST request to generate link
+      const linkResponse = await axios.post('http://localhost:9000/generate-link/', {
+        eventName
+      }, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (linkResponse.status === 200) {
+        // Handle successful link generation
+        const linkData = linkResponse.data;
+        console.log('Generated Link:', linkData.link);
+
+        // Copy to clipboard
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(linkData.link)
+            .then(() => {
+              toast({
+                title: 'Link Copied',
+                description: "The generated link has been copied to your clipboard.",
+                status: 'info',
+                duration: 5000,
+                isClosable: true,
+              });
+            });
+        }
+
+        // Redirect to the link page
+        navigate(`/${eventName}`);
+
+      } else {
+        // Handle errors in link generation
+        console.error('Failed to generate link');
+      }
+
+    } catch (error) {
+      console.error('Error:', error);
     }
   };
 
@@ -217,7 +227,7 @@ export default function Form() {
           </FormControl>
 
           {/* Submit Button */}
-          <Button mt={4} colorScheme='teal' type='submit' is>
+          <Button mt={4} colorScheme='teal' type='submit'>
             Submit
           </Button>
         </form>
