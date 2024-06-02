@@ -21,7 +21,7 @@ app.use(setHeaders);
 
 
 app.use(cors({
-   origin: ['https://attendence-49cr.vercel.app'],
+   origin: ['https://attendence-omega.vercel.app/'],
   methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type'],
   credentials: true, // If your requests include cookies or other credentials
