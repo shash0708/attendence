@@ -1,7 +1,7 @@
 {
   "name": "attendence",
   "version": "0.1.0",
-  "proxy": "http://localhost:9000",
+  "proxy": "https://attendence-omega.vercel.app/",
   "private": true,
   "dependencies": {
     "@chakra-ui/icons": "^2.1.1",
