@@ -43,6 +43,8 @@ export default function Form() {
               maxRadius,
               adminLocation: { latitude, longitude }
             }),
+              credentials: 'include' // or 'same-origin' depending on your setup
+
           });
 
           console.log(response);
