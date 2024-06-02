@@ -1,46 +1,48 @@
-// Import necessary modules
 const mongoose = require('mongoose');
 
-// Define the schema for your form data
 const EventSchema = new mongoose.Schema({
   eventName: {
     type: String,
-    required: true,
-    minlength: 4
+    required: true
   },
   contactNo: {
     type: String,
-    required: true,
-    minlength: 10,
-    maxlength: 10
+    required: true
   },
   strength: {
     type: String,
     required: true,
-    minlength: 4
   },
   year: {
-    type: String,
-    enum: ['1st', '2nd', '3rd'], // Only allows '1st', '2nd', or '3rd'
+    type: [String], // Change to array of strings
     required: true
   },
   organization: {
     type: String,
     required: true,
-    minlength: 4
   },
   department: {
     type: String,
     required: true,
-    minlength: 4
+ 
   },
   maxRadius: {
-    type: Number
+    type: Number,
+    required: true
+  },
+  adminLocation: {
+    latitude: {
+      type: Number,
+      required: true
+    },
+    longitude: {
+      type: Number,
+      required: true
+    }
   }
+
 });
 
-// Create a model using the schema
-const Event = mongoose.model('Event', EventSchema);
-
-// Export the model
-module.exports = Event;
+const Event= mongoose.model('Event', EventSchema);
+module.exports = Event
+ 

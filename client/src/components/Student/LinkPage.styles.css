@@ -1,0 +1,24 @@
+
+
+
+@media screen and (max-width: 768px) {
+
+
+
+  .box {
+    display:flex;
+    justify-content:center;
+  
+      width: 100%;
+      position: fixed;
+    }
+    .sss{
+      display:flex;
+      justify-content:center;
+      margin-top: 100px;
+
+      overflow: auto;
+      height: 10vh; 
+
+    }
+}
