@@ -14,7 +14,7 @@ const calculateAndCheckDistance = require('./utils/distance'); // Adjust the pat
 
 
 app.use(cors({
-   origin: ['https://attendence-49cr.vercel.app'],
+   origin: ['http://localhost:3000'],
   methods: ['GET', 'POST'],
   credentials: true, // If your requests include cookies or other credentials
 }));
