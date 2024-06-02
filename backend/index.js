@@ -10,13 +10,6 @@ const Student = require('./models/Student');
 const apiKey = process.env.GOOGLE_DISTANCE_MATRIX_API_KEY;
 const calculateAndCheckDistance = require('./utils/distance'); // Adjust the path as per your file structure
 
-function setHeaders(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-}
-
-app.use(setHeaders);
 
 
 
