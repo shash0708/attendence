@@ -18,16 +18,16 @@ function setHeaders(req, res, next) {
 
 app.use(setHeaders);
 
-const corsOptions = {
-  origin: 'https://attendence-49cr.vercel.app',
+
+
+app.use(cors({
+   origin: 'https://attendence-49cr.vercel.app',
   methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type'],
   credentials: true, // If your requests include cookies or other credentials
   optionsSuccessStatus: 200
-};
-
-app.use(cors(corsOptions));
-app.options('/update', cors(corsOptions));
+}));
+app.options('*', cors(corsOptions));
 
 
 dotenv.config();
