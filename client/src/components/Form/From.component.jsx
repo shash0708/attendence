@@ -28,7 +28,7 @@ export default function Form() {
         setAdminLocation({ latitude, longitude });
 
         try {
-          const response = await fetch('http://localhost:9000/update', {
+          const response = await fetch('https://attendence-omega.vercel.app/update', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -57,7 +57,7 @@ export default function Form() {
               isClosable: true,
             });
 
-            const linkResponse = await fetch('http://localhost:9000/generate-link/', {
+            const linkResponse = await fetch('https://attendence-omega.vercel.app/generate-link/', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
