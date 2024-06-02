@@ -18,7 +18,6 @@ app.use(cors({
   methods: ['GET', 'POST'],
   credentials: true, // If your requests include cookies or other credentials
 }));
-app.options('*', cors(corsOptions));
 
 
 dotenv.config();
