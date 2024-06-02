@@ -19,15 +19,18 @@ function setHeaders(req, res, next) {
 app.use(setHeaders);
 
 const corsOptions = {
-  origin: 'https://attendence-49cr.vercel.app', // Allow only this origin
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true, // Allow cookies and other credentials
-  optionsSuccessStatus: 200 // Respond with a 200 status code for preflight requests
+  origin: 'https://attendence-49cr.vercel.app',
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type'],
+  credentials: true, // If your requests include cookies or other credentials
+  optionsSuccessStatus: 200
 };
+
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 
 
 dotenv.config();
-app.use(cors(corsOptions));
 app.use(express.json());
 const router = express.Router();
 const uri =process.env.MONGO_URI
