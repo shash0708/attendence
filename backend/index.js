@@ -13,15 +13,23 @@ const calculateAndCheckDistance = require('./utils/distance'); // Adjust the pat
 
 
 
-app.use(cors({
-   origin: ['http://localhost:3000'],
-  methods: ['GET', 'POST'],
-  credentials: true, // If your requests include cookies or other credentials
-}));
-
-
 dotenv.config();
+const app = express();
+
 app.use(express.json());
+
+const corsOptions = {
+  origin: 'http://localhost:3000',
+  credentials: true, // Access-Control-Allow-Credentials
+  optionsSuccessStatus: 200,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allow necessary HTTP methods
+  allowedHeaders: ['Content-Type', 'Authorization'], // Allow necessary headers
+};
+
+app.use(cors(corsOptions));
+
+// Enable pre-flight across-the-board
+app.options('*', cors(corsOptions));
 const router = express.Router();
 const uri =process.env.MONGO_URI
 mongoose.connect(uri);
