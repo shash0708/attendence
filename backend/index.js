@@ -42,6 +42,8 @@ con.once("open", () => {
 
 app.post('/update', async (req, res) => {
     try {
+        res.send('Update endpoint reached');
+
       // Extract event data from the request body
       const {eventName,contactNo,strength,year,organization,department,maxRadius,adminLocation} = req.body;
       // Create a new event object using the extracted data
@@ -56,6 +58,7 @@ app.post('/update', async (req, res) => {
       // Save the event to the database
       const savedNote = await event.save();
       res.json(savedNote);
+      
     } catch (error) {
       // Handle errors
       console.error(error);
