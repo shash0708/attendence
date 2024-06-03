@@ -43,6 +43,12 @@ con.once("open", () => {
   console.log("Mongo DB connected");
 });
 
+app.get('/', async (req, res) => {
+    
+        res.send('Update endpoint reached');
+
+    });
+
 app.post('/update', async (req, res) => {
     try {
         res.send('Update endpoint reached');
