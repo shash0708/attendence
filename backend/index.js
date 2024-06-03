@@ -23,7 +23,7 @@ const corsOptions = {
   credentials: true, // Access-Control-Allow-Credentials
   optionsSuccessStatus: 200,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allow necessary HTTP methods
-  allowedHeaders: ['Content-Type', 'Authorization'], // Allow necessary headers
+  allowedHeaders: ['X-CSRF-Token', 'X-Requested-With', 'Accept', 'Accept-Version', 'Content-Length', 'Content-MD5', 'Content-Type', 'Date', 'X-Api-Version']
 };
 
 app.use(cors(corsOptions));
