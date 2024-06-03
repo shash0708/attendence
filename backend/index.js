@@ -18,13 +18,18 @@ const app = express();
 
 app.use(express.json());
 
-const corsOptions = {
-  origin: 'http://localhost:3000',
-  credentials: true, // Access-Control-Allow-Credentials
-  optionsSuccessStatus: 200,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Allow necessary HTTP methods
-  allowedHeaders: ['X-CSRF-Token', 'X-Requested-With', 'Accept', 'Accept-Version', 'Content-Length', 'Content-MD5', 'Content-Type', 'Date', 'X-Api-Version']
-};
+app.use(cors(
+  {
+    origin : "https://attendence-49cr.vercel.app",
+    methods : ["GET","POST","PUT","DELETE"],
+    credentials : true
+  }
+)); // Enable CORS//origin means from any kind of domain if we want to access the router we need this
+
+//bodyparser middleware
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
 
 app.use(cors(corsOptions));
 
