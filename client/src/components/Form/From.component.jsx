@@ -30,7 +30,6 @@ export default function Form() {
 
         try {
           // Axios POST request for form submission
-          axios.defaults.withCredentials= true;
           const response = await axios.post('https://attendence-omega.vercel.app/update', {
             eventName,
             contactNo,
@@ -43,7 +42,9 @@ export default function Form() {
           }, {
             headers: {
               'Content-Type': 'application/json',
-            },          });
+            },      
+          withCredentials: true
+          });
 
           console.log(response);
 
