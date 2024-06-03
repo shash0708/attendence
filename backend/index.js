@@ -56,7 +56,8 @@ app.post('/update', async (req, res) => {
       // Save the event to the database
       const savedNote = await event.save();
       res.json(savedNote);
-      
+        res.status(200).json({ message: 'Update successful' });
+
     } catch (error) {
       // Handle errors
       console.error(error);
