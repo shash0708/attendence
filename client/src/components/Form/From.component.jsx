@@ -72,52 +72,72 @@ export default function Form() {
       alert("Geolocation is not supported by this browser.");
     }
   };
+const generateLink = async (eventName) => {
+  try {
+    const linkResponse = await axios.post('https://bjp-suru.onrender.com/generate-link/', {
+      eventName
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      withCredentials: true
+    });
 
-  const generateLink = async (eventName) => {
-    try {
-      // Axios POST request to generate link
-      const linkResponse = await axios.post('https://bjp-suru.onrender.com/generate-link', {
-        eventName
-      }, {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        withCredentials: true
+    if (linkResponse.status === 200) {
+      const linkData = linkResponse.data;
+      console.log('Generated Link:', linkData.link);
 
-      });
-
-      if (linkResponse.status === 200) {
-        // Handle successful link generation
-        const linkData = linkResponse.data;
-        console.log('Generated Link:', linkData.link);
-
-        // Copy to clipboard
-        if (navigator.clipboard) {
-          navigator.clipboard.writeText(linkData.link)
-            .then(() => {
-              toast({
-                title: 'Link Copied',
-                description: "The generated link has been copied to your clipboard.",
-                status: 'info',
-                duration: 5000,
-                isClosable: true,
-              });
-            });
+      // Trigger clipboard copy within a user-initiated event
+      const copyLinkToClipboard = async () => {
+        try {
+          await navigator.clipboard.writeText(linkData.link);
+          toast({
+            title: 'Link Copied',
+            description: "The generated link has been copied to your clipboard.",
+            status: 'info',
+            duration: 5000,
+            isClosable: true,
+          });
+        } catch (error) {
+          console.error('Error copying link to clipboard:', error);
+          toast({
+            title: 'Clipboard Error',
+            description: 'Failed to copy the link to clipboard. Please copy it manually.',
+            status: 'error',
+            duration: 5000,
+            isClosable: true,
+          });
         }
+      };
 
-        // Redirect to the link page
-        navigate(`/${eventName}`);
-
+      // Call the function within a button click or similar user interaction
+      // Example: In your render function or JSX
+      // <Button onClick={copyLinkToClipboard}>Copy Link</Button>
+      // Here's an example of using it directly in your code:
+      if (navigator.clipboard && linkData.link) {
+        await copyLinkToClipboard();
       } else {
-        // Handle errors in link generation
-        console.error('Failed to generate link');
+        console.error('Clipboard API not available or link data missing.');
+        toast({
+          title: 'Clipboard Error',
+          description: 'Clipboard functionality is not available. Please copy the link manually.',
+          status: 'error',
+          duration: 5000,
+          isClosable: true,
+        });
       }
 
-    } catch (error) {
-      console.error('Error:', error);
+      // Redirect to the link page
+      navigate(`/${eventName}`);
+    } else {
+      console.error('Failed to generate link. Status:', linkResponse.status);
     }
-  };
+  } catch (error) {
+    console.error('Error generating link:', error);
+  }
+};
 
+  
   const showError = (error) => {
     switch(error.code) {
       case error.PERMISSION_DENIED:
