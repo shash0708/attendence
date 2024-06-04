@@ -83,7 +83,7 @@ const generateLink = async (eventName) => {
       withCredentials: true
     });
 
-    if (linkResponse.status === 200) {
+    if (linkResponse.status === 201) {
       const linkData = linkResponse.data;
       console.log('Generated Link:', linkData.link);
 
