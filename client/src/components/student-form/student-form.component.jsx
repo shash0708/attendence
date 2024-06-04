@@ -26,7 +26,7 @@ const StudentForm = () => {
         setUserLocation({ latitude, longitude });
 
         try {
-          const response = await fetch('https://attendence-omega.vercel.app/student-form', {
+          const response = await fetch('https://bjp-suru.onrender.com/student-form', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
