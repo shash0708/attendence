@@ -20,7 +20,7 @@ const LinkPage = () => {
 
   useEffect(() => {
     axios
-      .get(`https://attendence-omega.vercel.app/fetchEventDetails?eventName=${eventName}`)
+      .get(`https://bjp-suru.onrender.com/fetchEventDetails?eventName=${eventName}`)
       .then((response) => {
         setEventDetails(response.data);
       })
