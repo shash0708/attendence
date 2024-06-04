@@ -76,7 +76,7 @@ export default function Form() {
   const generateLink = async (eventName) => {
     try {
       // Axios POST request to generate link
-      const linkResponse = await axios.post('https://bjp-suru.onrender.com/generate-link/', {
+      const linkResponse = await axios.post('https://bjp-suru.onrender.com/generate-link', {
         eventName
       }, {
         headers: {
