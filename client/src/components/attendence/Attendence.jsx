@@ -22,7 +22,7 @@ export default function Attendance() {
         // Function to fetch student data
         const fetchStudentData = async () => {
             try {
-                const response = await axios.get(`https://attendence-omega.vercel.app/fetchStudentData?eventName=${eventName}`);
+                const response = await axios.get(`https://bjp-suru.onrender.com/fetchStudentData?eventName=${eventName}`);
                 if (response.status === 200) {
                     setStudentDetails(response.data); // Update student data state
                 }
