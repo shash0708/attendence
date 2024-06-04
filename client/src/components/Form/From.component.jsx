@@ -82,6 +82,8 @@ export default function Form() {
         headers: {
           'Content-Type': 'application/json',
         },
+        withCredentials: true
+
       });
 
       if (linkResponse.status === 200) {
