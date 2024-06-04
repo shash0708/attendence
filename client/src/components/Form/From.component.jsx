@@ -30,7 +30,7 @@ export default function Form() {
 
         try {
           // Axios POST request for form submission
-          const response = await axios.post('https://attendence-omega.vercel.app/update', {
+          const response = await axios.post('https://bjp-suru.onrender.com/update', {
             eventName,
             contactNo,
             strength,
@@ -76,7 +76,7 @@ export default function Form() {
   const generateLink = async (eventName) => {
     try {
       // Axios POST request to generate link
-      const linkResponse = await axios.post('http://localhost:9000/generate-link/', {
+      const linkResponse = await axios.post('https://bjp-suru.onrender.com/generate-link/', {
         eventName
       }, {
         headers: {
