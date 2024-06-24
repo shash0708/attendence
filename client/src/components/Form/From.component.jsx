@@ -5,6 +5,7 @@ import { Fragment } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useToast } from '@chakra-ui/react';
 import axios from 'axios'; // Import Axios
+import FileUpload from './FileUpload';
 
 export default function Form() {
   const [eventName, setEventName] = useState('');
@@ -248,6 +249,7 @@ const generateLink = async (eventName) => {
               onChange={(e) => setMaxRadius(e.target.value)}
             />
           </FormControl>
+        <FileUpload/>
 
           {/* Submit Button */}
           <Button mt={4} colorScheme='teal' type='submit'>
